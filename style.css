@@ -627,7 +627,7 @@ ol {
    ========================================================= */
 .test {
   position: relative;
-  height: 320vh;
+  height: 240vh;
   background: var(--light);
   color: var(--ink);
 }
@@ -1455,12 +1455,17 @@ ol {
     height: 38px;
   }
 
+  /* No celular a seção não trava: rola normalmente e os passos acendem pela posição */
+  .test {
+    height: auto;
+  }
+
   .test-sticky {
+    position: relative;
+    height: auto;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    align-content: center;
-    gap: 28px;
-    padding-top: 84px;
+    gap: 36px;
+    padding: 88px var(--gutter) 72px;
   }
 
   .steps li {
@@ -1476,7 +1481,7 @@ ol {
   }
 
   .phone {
-    height: min(44vh, 420px);
+    height: min(62vh, 520px);
     border-radius: 34px;
     padding: 7px;
   }

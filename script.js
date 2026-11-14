@@ -30,6 +30,7 @@ const SITES = [
 
   const html = document.documentElement;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = matchMedia('(max-width: 860px)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const playIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
   let vh = innerHeight;
@@ -369,7 +370,10 @@ const SITES = [
     } else {
       const r = test.getBoundingClientRect();
       if (r.top < vh && r.bottom > 0) {
-        const p = range(-r.top, 0, test.offsetHeight - vh);
+        // Desktop: seção travada na tela. Celular: rola normal, progresso pela passagem na tela.
+        const p = mobile.matches
+          ? range(vh - r.top, vh * 0.4, r.height + vh * 0.6)
+          : range(-r.top, 0, test.offsetHeight - vh);
         setStep(p < 0.3 ? 0 : p < 0.62 ? 1 : 2);
         punch.classList.toggle('is-on', p > 0.72);
       }
